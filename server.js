@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // db configuration
-const DB_URL = process.env.DATABASE_URL;
+const DB_URL = process.env.DATABASE_URL || "mongodb://localhost:27017";
 mongoose
     .connect(DB_URL, {
         useNewUrlParser: true,
@@ -30,5 +30,5 @@ mongoose.Promise = global.Promise;
 app.use("/api/job/", job);
 app.use("/api/apply", application);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5555;
 app.listen(PORT, () => console.log(`Server up and running on port ${PORT}`));
